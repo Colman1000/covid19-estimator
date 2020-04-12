@@ -38,10 +38,8 @@ const covid19ImpactEstimator = (data) => {
   impact.infectionsByRequestedTime = getInfectedOverTimeSpan(severeImpact.currentlyInfected, data);
 
   return ({
-    estimate: {
-      impact,
-      severeImpact
-    }
+    impact,
+    severeImpact
   });
 };
 
