@@ -29,19 +29,20 @@ totalHospitalBeds: 1380614
 const covid19ImpactEstimator = (data) => {
   const { reportedCases } = data;
 
-  const impact = {};
-  impact.currentlyInfected = trimNum(reportedCases * 10);
-  impact.infectionsByRequestedTime = getInfectedOverTimeSpan(impact.currentlyInfected, data);
+  const impactCurrentlyInfected = trimNum(reportedCases * 10);
 
-  const severeImpact = {};
-  severeImpact.currentlyInfected = trimNum(reportedCases * 50);
-  // eslint-disable-next-line max-len
-  // impact.infectionsByRequestedTime = getInfectedOverTimeSpan(severeImpact.currentlyInfected, data);
+  const severeImpactCurrentlyInfected = trimNum(reportedCases * 50);
 
   return ({
     estimate: {
-      impact,
-      severeImpact
+      impact: {
+        currentlyInfected: impactCurrentlyInfected,
+        infectionsByRequestedTime: getInfectedOverTimeSpan(impactCurrentlyInfected, data)
+      },
+      severeImpact: {
+        currentlyInfected: severeImpactCurrentlyInfected
+        // infectionsByRequestedTime: getInfectedOverTimeSpan(severeImpactCurrentlyInfected, data)
+      }
     }
   });
 };
