@@ -35,7 +35,8 @@ const covid19ImpactEstimator = (data) => {
 
   const severeImpact = {};
   severeImpact.currentlyInfected = trimNum(reportedCases * 50);
-  impact.infectionsByRequestedTime = getInfectedOverTimeSpan(severeImpact.currentlyInfected, data);
+  // eslint-disable-next-line max-len
+  // impact.infectionsByRequestedTime = getInfectedOverTimeSpan(severeImpact.currentlyInfected, data);
 
   return ({
     estimate: {
