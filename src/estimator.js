@@ -15,7 +15,7 @@ const getNumOfAvailBeds = ({ totalHospitalBeds }) => totalHospitalBeds - trimNum
 const getDollarsInFlight = (infectionsByRequestedTime, { timeToElapse, periodType, region }) => {
   const timeSpan = getTotalNumberOfDays(timeToElapse, periodType);
   const { avgDailyIncomeInUSD, avgDailyIncomePopulation } = region;
-  const t = infectionsByRequestedTime * avgDailyIncomeInUSD * avgDailyIncomePopulation * timeSpan;
+  const t = (infectionsByRequestedTime * avgDailyIncomeInUSD * avgDailyIncomePopulation) / timeSpan;
   return trimNum(t);
 };
 
