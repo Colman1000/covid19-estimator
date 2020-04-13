@@ -11,21 +11,6 @@ const getInfectedOverTimeSpan = (currentlyInfected, { timeToElapse, periodType }
   return trimNum(currentlyInfected * (2 ** factor));
 };
 
-/*
-Data Structure
-{
-  region: {
-    name: "Africa",
-      avgAge: 19.7,
-      avgDailyIncomeInUSD: 5,
-      avgDailyIncomePopulation: 0.71
-  },
-  periodType: "days",
-    timeToElapse: 58,
-reportedCases: 674,
-population: 66622705,
-totalHospitalBeds: 1380614
-} */
 const covid19ImpactEstimator = (data) => {
   const { reportedCases } = data;
 
@@ -34,15 +19,14 @@ const covid19ImpactEstimator = (data) => {
   const severeImpactCurrentlyInfected = trimNum(reportedCases * 50);
 
   return ({
-    estimate: {
-      impact: {
-        currentlyInfected: impactCurrentlyInfected,
-        infectionsByRequestedTime: getInfectedOverTimeSpan(impactCurrentlyInfected, data)
-      },
-      severeImpact: {
-        currentlyInfected: severeImpactCurrentlyInfected
-        // infectionsByRequestedTime: getInfectedOverTimeSpan(severeImpactCurrentlyInfected, data)
-      }
+    data,
+    impact: {
+      currentlyInfected: impactCurrentlyInfected,
+      infectionsByRequestedTime: getInfectedOverTimeSpan(impactCurrentlyInfected, data)
+    },
+    severeImpact: {
+      currentlyInfected: severeImpactCurrentlyInfected,
+      infectionsByRequestedTime: getInfectedOverTimeSpan(severeImpactCurrentlyInfected, data)
     }
   });
 };
