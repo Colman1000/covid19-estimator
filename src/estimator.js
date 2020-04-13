@@ -14,7 +14,8 @@ const getNumOfAvailBeds = ({ totalHospitalBeds }) => Math.ceil(totalHospitalBeds
 const getDollarsInFlight = (infectionsByRequestedTime, { timeToElapse, periodType, region }) => {
   const timeSpan = getTotalNumberOfDays(timeToElapse, periodType);
   const { avgDailyIncomeInUSD, avgDailyIncomePopulation } = region;
-  return avgDailyIncomeInUSD * avgDailyIncomePopulation * timeSpan;
+  const t = infectionsByRequestedTime * avgDailyIncomeInUSD * avgDailyIncomePopulation * timeSpan;
+  return trimNum(t);
 };
 
 const covid19ImpactEstimator = (data) => {
