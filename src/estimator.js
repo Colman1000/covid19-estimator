@@ -10,7 +10,8 @@ const getInfectedOverTimeSpan = (currentlyInfected, { timeToElapse, periodType }
   const factor = trimNum(getTotalNumberOfDays(timeToElapse, periodType) / 3);
   return trimNum(currentlyInfected * (2 ** factor));
 };
-const getNumOfAvailBeds = ({ totalHospitalBeds }) => Math.ceil(totalHospitalBeds * 0.35);
+// eslint-disable-next-line max-len
+const getNumOfAvailBeds = ({ totalHospitalBeds }) => totalHospitalBeds - trimNum(totalHospitalBeds * 0.65);
 const getDollarsInFlight = (infectionsByRequestedTime, { timeToElapse, periodType, region }) => {
   const timeSpan = getTotalNumberOfDays(timeToElapse, periodType);
   const { avgDailyIncomeInUSD, avgDailyIncomePopulation } = region;
