@@ -28,13 +28,13 @@ const covid19ImpactEstimator = (data) => {
   const impactCurrentlyInfected = trimNum(reportedCases * 10);
   const iInfectionsByRequestedTime = getInfectedOverTimeSpan(impactCurrentlyInfected, data);
   const iSevereCasesByRequestedTime = trimNum(iInfectionsByRequestedTime * 0.15);
-  const iHospitalBedsByRequestedTime = availableBeds - iSevereCasesByRequestedTime;
+  const iHospitalBedsByRequestedTime = trimNum(availableBeds - iSevereCasesByRequestedTime);
 
 
   const severeImpactCurrentlyInfected = trimNum(reportedCases * 50);
   const sInfectionsByRequestedTime = getInfectedOverTimeSpan(severeImpactCurrentlyInfected, data);
   const sSevereCasesByRequestedTime = trimNum(sInfectionsByRequestedTime * 0.15);
-  const sHospitalBedsByRequestedTime = availableBeds - sSevereCasesByRequestedTime;
+  const sHospitalBedsByRequestedTime = trimNum(availableBeds - sSevereCasesByRequestedTime);
 
   return ({
     data,
